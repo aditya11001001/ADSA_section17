@@ -1,0 +1,33 @@
+class Solution {
+    int countFreq(int[] arr, int target) {
+        // code here
+        int low = 0;
+        int high = arr.length-1;
+        boolean flag = false;
+        int idx = -1;
+        while (low<=high){
+            int mid = (low + high)/2;
+            if(arr[mid]==target){
+                flag = true;
+                idx = mid;
+                break;
+            }else if(arr[mid]>target){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        if(flag){
+            int left = idx;
+            int right = idx;
+            while(left-1>=0 && arr[left-1]==target){
+                left--;
+            }
+            while(right+1<arr.length && arr[right+1]==target){
+                right++;
+            }
+            return right-left+1;
+        }
+        return 0;
+    }
+}

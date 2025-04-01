@@ -1,0 +1,37 @@
+static int binarySearch(int low, int high, int tar, int[] arr){
+        while (low<=high){
+            int mid = (low + high)/2;
+            if(arr[mid]==tar){
+                return mid;
+            }else if(arr[mid]>tar){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return -1;
+    }
+    static int Search(int array[], int target)
+	{
+	    // code here
+	    int n = array.length;
+        int low = 0;
+        int high = n-1;
+        
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(array[mid]>array[n-1]){
+                low = mid + 1;
+            }else{
+                high = mid-1;
+            }
+        }
+        
+	    int left = binarySearch(low, n-1, target, array);
+	    int right = binarySearch(0, low-1, target, array);
+	    if(left!=-1){
+	        return left;
+	    }else{
+	        return right;
+	    }
+	}
